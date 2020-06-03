@@ -1,0 +1,150 @@
+Endpoint request & response
+
+Isi grafik
+1. 10 Frekuensi Portofolio Produk Tertinggi
+2. Fasilitas Rekening
+3. Segmentasi
+4. Posisi Saldo
+5. Prediksi Nasabah Keluar
+6. Prediksi Ratas Saldo
+7. 10 Frekuensi Transaksi Merchant Tertinggi
+8. 10 Nominal Transaksi Merchant Tertinggi
+
+Endpoint
+1. summary-report/top-produk
+2. summary-report/fasilitas-rekening
+3. summary-report/segmentasi
+4. summary-report/posisi-saldo
+5. summary-report/prediksi-nasabah-keluar
+6. summary-report/prediksi-ratas-saldo
+7. summary-report/top-frekuensi-merchant
+8. summary-report/top-nominal-merchant
+9. summary-report/download
+
+Request Endpoint no 1-8
+{
+    'start_date' : '201901',
+    'end_date' : '201912',
+    'kanwil' : '',
+    'cabang' : '',
+    'unit' : ''
+}
+
+
+
+Request Endpoint summary-report/download
+{
+    'start_date' : '201901',
+    'end_date' : '',
+    'kanwil' : '',
+    'cabang' : '',
+    'unit' : '',
+    'summary' : 'top-produk'
+}
+
+Note : summary bisa top-produk, fasilitas-rekening, posisi-saldo, prediksi-nasabah-keluar, prediksi-ratas-saldo, top-frekuensi-merchant, top-nominal-merchant. 
+
+Response Endpoint
+1. summary-report/top-produk
+
+2. summary-report/fasilitas-rekening
+Query = 'select status, sum(reg_sms) as reg_sms, sum(sms_fin) as sms_fin ... from BRI360_FASREK where ds='201912' ... group by status'
+
+Jika request benar  dan ada isinya
+{
+    status: 200,
+    data : 
+    {   
+        'reg_sms':{
+            'aktif': 123,
+            'tidak aktif': 245
+        },
+        'sms_fin':{
+            'aktif': 123,
+            'tidak aktif': 245
+        },
+        ...
+    },
+    ds : '201910',
+    modified_date : '2019-12-16 14:23:45'
+}
+3. summary-report/segmentasi
+{
+    status: 200,
+    data: {
+        'Generator' : 234,
+        'Saver_Passive' : 234,
+        'Saver_Aktif ': 234,
+        ...
+    },
+    ds : '201910',
+    modified_date : '2019-12-16 14:23:45'
+}
+
+4. summary-report/posisi-saldo
+{
+    status: 200,
+    data: {
+        ''
+    },
+
+}
+
+5. summary-report/prediksi-nasabah-keluar
+{
+    status: 200,
+    data: {
+        high: 245,
+        medium: 34,
+        low: 356
+    }
+    ds: '201902',
+    modified_date : '2019-12-16 14:23:45'
+}
+
+6. summary-report/prediksi-ratas-saldo
+{
+    status: 200,
+    data: {
+        naik: 235,
+        turun: 356
+    },
+    ds: '201902',
+    modified_date : '2019-12-16 14:23:45'
+}
+
+7. summary-report/top-frekuensi-merchant
+{
+    status: 200,
+    data: {
+        'tokopedia': 43544654364,
+        'traveloka' : 2444665,
+        ...
+    },
+    ds: '201902',
+    modified_date : '2019-12-16 14:23:45'
+}
+
+8. summary-report/top-nominal-merchant
+{
+    status: 200,
+    data: {
+        'tokopedia': 43544654364,
+        'traveloka' : 2444665,
+        ...
+    },
+    ds: '201902',
+    modified_date : '2019-12-16 14:23:45'
+}
+
+Global
+Jika request data kosong 
+{
+    status: 200,
+    data: {}
+}
+Jika request error
+{
+    status: 400,
+    error: message error.
+}

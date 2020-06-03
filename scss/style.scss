@@ -1,0 +1,72 @@
+/*!
+ * CoreUI - Open Source Bootstrap Admin Template
+ * @version v1.0.10
+ * @link http://coreui.io
+ * Copyright (c) 2018 creativeLabs Łukasz Holeczek
+ * @license MIT
+ */
+
+// Override Boostrap variables
+@import "bootstrap-variables";
+
+// Import Bootstrap source files
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Override core variables
+@import "core-variables";
+
+// Import core styles
+@import "core/core";
+
+// Custom styles
+@import "custom";
+
+.card {
+    border-radius: .25rem;
+}
+
+.btn {
+    border-radius: .25rem;
+}
+
+.input-summary{
+    border-radius: .25rem;
+}
+
+.btn-summary {
+    color: #fff;
+    background-color:#042e5f;
+    border-color: #042e5f;
+}
+
+.ant-input {
+    height: 38px !important;
+}
+
+.sidebar {
+    // display: flex;
+    // flex-direction: column;
+    // padding: 0;
+    // color: #fff;
+    background: #03254c;
+}
+
+.sidebar .nav-link.active, .sidebar .navbar .active.dropdown-toggle, .navbar .sidebar .active.dropdown-toggle {
+    // color: #fff;
+    background: #063a77;
+}
+
+.costumMonthPicker {
+    width: 100%;
+}
+
+// Kumpulan Warna Grafik
+/*
+biru gelap: #03254c
+biru terang: #063a77
+tombol: #042e5f
+abu2 : #73818e
+biru : #2eabf5
+merah : #f66d6e
+
+*/
